@@ -13,7 +13,7 @@ export function AddBillButton() {
       style={styles.wrapper}
       onPress={() => navigate('Bill')}>
       <View style={styles.iconContainer}>
-        <Icon name='add'/>
+        <Icon name='add' color={colors.white} size={18}/>
       </View>
       <View style={styles.messageWrapper}>
         <Text style={styles.message}>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   clickMessage: {
     color: colors.primary,
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 22.4,
     fontWeight: '700',
   },

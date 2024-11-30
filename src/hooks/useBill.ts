@@ -14,7 +14,6 @@ export function useBill() {
   const validadeBillData = () => { }
 
   const createBill = (bill: Bill) => {
-    console.log(bill)
     try {
       realm.write(() => {
         realm.create('Bill', {
@@ -48,8 +47,12 @@ export function useBill() {
   const payBill = (id: BillType['_id']) => {
     const bill = realm.objectForPrimaryKey('Bill', id);
 
+    console.log(bill)
+
     if(bill) {
-      bill.paid = true;
+      realm.write(() => {
+        bill.paid = true;
+      })
     }
   }
 

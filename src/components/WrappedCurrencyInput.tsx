@@ -3,24 +3,29 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Text,
-  TextInput,
   TextInputProps,
 } from 'react-native';
+import CurrencyInput from 'react-native-currency-input';
 
 import colors from '../consts/colors';
 
-type WrappedTextInputProps = TextInputProps & {
+type WrappedCurrencyInputProps = TextInputProps & {
   label?: string;
 };
 
-export function WrappedTextInput({label, ...props}: WrappedTextInputProps) {
+export function WrappedCurrencyInput({label, ...props}: WrappedCurrencyInputProps) {
   return (
     <KeyboardAvoidingView style={styles.wrapper}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput
+      <CurrencyInput
         style={styles.textInput}
         placeholder={props.placeholder}
         placeholderTextColor={colors.icon}
+        prefix="R$"
+        delimiter="."
+        separator=","
+        precision={2}
+        minValue={0}
         {...props}
       />
     </KeyboardAvoidingView>

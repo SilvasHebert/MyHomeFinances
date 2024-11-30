@@ -25,16 +25,16 @@ export function BillItem({ item }: BillItemProps) {
         <Text style={styles.name}>{item.name}</Text>
       </View>
       <Text style={styles.value}>{item.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</Text>
-      <Text style={styles.date}>Data de Vencimento 22/11/2024</Text>
+      <Text style={styles.date}>Vencimento dia {item.dueDay} </Text>
       <View style={styles.status}>
         <View style={styles.status}>
-          <Icon name="timer" size={24} color={colors.error} />
-          <Text style={styles.pending}>
-            Pendente
+          <Icon name={item.paid ? "check" : "timer"} size={24} color={item.paid ? colors.success : colors.error} />
+          <Text style={item.paid ? styles.paid : styles.pending}>
+            {item.paid ? 'Pago' : 'Pendente'}
           </Text>
         </View>
         <Button onPress={() => {payBill(item._id)}}>
-            Pagar
+            {item.paid ? 'Desfazer' : 'Pagar'}
         </Button>
       </View>
     </View>
@@ -77,6 +77,11 @@ const styles = StyleSheet.create({
   },
   pending: {
     color: colors.error,
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  paid: {
+    color: colors.success,
     fontSize: 16,
     fontWeight: 'bold'
   }
